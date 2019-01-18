@@ -84,7 +84,9 @@ Created the beginnings of a video game where a "boss" enemy would fire bullets a
 
 Design Achievement:
 - Implemented the outline of a boss
-- Entire design is relative to itself, such that changing one variable will change the position of the face on a screen without distortion
+- Generated a ship polygon
+- Entire facial design is relative to itself, such that changing the first eyebrow variable will change the position of the face on a screen without distortion
 
 Technical Achievement:
 - Using mousemove, dynamically draw a ship that will follow the player's cursor 
+- Using a for loop to draw teeth

@@ -8,7 +8,7 @@
         width = +svg.attr("width"),
         height = +svg.attr("height"),
         g = svg.append("g");
-
+    
     svg.on('mousemove', function() {
         var coord = d3.mouse(this);
         draw_ship(coord)
