@@ -76,3 +76,15 @@ Remember, it is up to *you* to define what constitutes a technical and design ac
 Be ambitious as these are designed to allow you to shape your learning.
 These are the only way to move from B to A territory.
 
+/*********************************************************************/
+
+http://jyxiao.github.io/01-ghd3/index.html
+
+Created the beginnings of a video game where a "boss" enemy would fire bullets at the player, who controls a ship with their mouse
+
+Design Achievement:
+- Implemented the outline of a boss
+- Entire design is relative to itself, such that changing one variable will change the position of the face on a screen without distortion
+
+Technical Achievement:
+- Using mousemove, dynamically draw a ship that will follow the player's cursor 

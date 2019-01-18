@@ -1,10 +1,97 @@
 <script src="https://d3js.org/d3.v5.min.js"></script>
+<svg width="1820" height="900"></svg>
 
 <script>
-  console.log(d3); // test if d3 is loaded
-  // Add an SVG
-  // Add Rectangles
-  // Add Circles
-  // Add Lines
-  // Add Polygons
+    console.log(d3); // test if d3 is loaded
+
+    var svg = d3.select("svg"),
+        width = +svg.attr("width"),
+        height = +svg.attr("height"),
+        g = svg.append("g");
+
+    svg.on('mousemove', function() {
+        var coord = d3.mouse(this);
+        draw_ship(coord)
+    });
+
+    function draw_ship(coord) {
+        x = coord[0];
+        y = coord[1];
+
+        var data = [
+            [x, y - 30],
+            [x + 20, y + 20],
+            [x + 35, y + 20],
+            [x + 50, y + 40],
+            [x + 25, y + 40],
+            [x + 10, y + 30],
+            [x - 10, y + 30],
+            [x - 25, y + 40],
+            [x - 50, y + 40],
+            [x - 35, y + 20],
+            [x - 20, y + 20],
+        ];
+
+        var ship1 = g.selectAll("polygon");
+
+        ship1.data(data).enter().append("polygon").attr("fill","lightblue");
+        ship1.attr("points", data);
+    }//draws to follow the mouse cursor
+
+    var eyebrowTopLeftX = 90;
+    var eyebrowTopLeftY = 20;
+    var eyebrowTopRightX = eyebrowTopLeftX + 140;
+    var eyebrowTopRightY = eyebrowTopLeftY + 45;
+    var eyebrowBottomLeftX = eyebrowTopLeftX + 15;
+    var eyebrowBottomLeftY = eyebrowTopLeftY + 40;
+    var eyebrowBottomRightX = eyebrowTopLeftX + 145;
+    var eyebrowBottomRightY = eyebrowTopLeftY + 60;
+    var eyeMargin = 250;
+
+
+    leftEyebrowPoints = [[eyebrowTopLeftX,eyebrowTopLeftY],[eyebrowTopRightX,eyebrowTopRightY],[eyebrowBottomRightX,eyebrowBottomRightY],[eyebrowBottomLeftX,eyebrowBottomLeftY]];
+    rightEyebrowPoints =[[eyebrowTopLeftX + 180 + eyeMargin,eyebrowTopLeftY],
+        [eyebrowTopRightX + 180 + eyeMargin - 280,eyebrowTopRightY],
+        [eyebrowBottomRightX  + 180 + eyeMargin - 290,eyebrowBottomRightY],
+        [eyebrowBottomLeftX + 180 + eyeMargin - 30,eyebrowBottomLeftY]];
+
+    var leftEyeX = eyebrowTopLeftX + 90;
+    var rightEyeX = eyebrowTopLeftX + 90 + eyeMargin;
+    var eyeY = 110;
+    var outerEye = 50;
+    var iris = outerEye - 5;
+    var pupil = outerEye / 3;
+    var numTeeth = 10;
+    var mouthWidth = 100;
+    var mouthHeight = 50;
+
+    svg.append('circle').attr("r", outerEye).attr("cx",leftEyeX).attr("cy",eyeY).attr("fill","black");  //outer
+    svg.append('circle').attr("r", iris).attr("cx",leftEyeX).attr("cy",eyeY).attr("fill","white");  //iris
+    svg.append('circle').attr("r", pupil).attr("cx",leftEyeX).attr("cy",eyeY + 10).attr("fill","darkred");  //pupil
+
+    svg.append('circle').attr("r", outerEye).attr("cx",rightEyeX).attr("cy",eyeY).attr("fill","black");  //outer
+    svg.append('circle').attr("r", iris).attr("cx",rightEyeX).attr("cy",eyeY).attr("fill","white");  //iris
+    svg.append('circle').attr("r", pupil).attr("cx",rightEyeX).attr("cy",eyeY + 10).attr("fill","darkred");  //pupil
+
+    svg.append('polygon').attr('points', leftEyebrowPoints);
+    svg.append('polygon').attr('points', rightEyebrowPoints);
+
+    svg.append('rect').attr('height',50).attr('width',100).attr('x',eyebrowTopLeftX + 165).attr('y', eyebrowTopLeftY + 100).attr('stroke','black').attr('fill','white');
+
+    for(let i = 0; i < numTeeth; i++)
+    {
+        svg.append('line')
+            .attr('x1', eyebrowTopLeftX + 165 + mouthWidth * i / numTeeth)
+            .attr('x2', eyebrowTopLeftX + 165 + mouthWidth * i / numTeeth)
+            .attr('y1', eyebrowTopLeftY + 100)
+            .attr('y2', eyebrowTopLeftY + 150)
+            .attr("stroke","black")
+    }
+    svg.append('line')
+        .attr('x1', eyebrowTopLeftX + 165)
+        .attr('x2', eyebrowTopLeftX + 165 + 100)
+        .attr('y1', eyebrowTopLeftY + 125)
+        .attr('y2', eyebrowTopLeftY + 125)
+        .attr("stroke","black")
+
 </script>
